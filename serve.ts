@@ -1,10 +1,9 @@
-import { Application } from "https://deno.land/x/abc@v1.0.0-rc10/mod.ts";
+import { Application } from 'https://deno.land/x/oak/mod.ts'
 
 const app: Application = new Application();
+console.log('Server running on port 5000');
 
-app
-  .get("/:name", ( ctx ) => {
-    let { response: res, request: req } = ctx
-    res.body = "Hello!"
-  })
-  .start({ port: 8000 });
+app.use(ctx => {
+  ctx.response.body = 'Hello World!'
+})
+await app.listen({ port: 5000 })
